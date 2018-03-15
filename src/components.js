@@ -7,6 +7,17 @@ export const About = () => (
     </div>
 );
 
+export const BookComponent = (props) => {
+    const book = props.book;
+    return (
+        <li>
+            <label>
+                <span>#{book.id} {book.title}</span>
+            </label>
+        </li>
+    );
+};
+
 export const BookListComponent = (props) => (
     <ul>
         <div>本のタイトル</div>
