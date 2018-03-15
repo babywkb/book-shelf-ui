@@ -7,7 +7,14 @@ import { Book, BookList } from './models';
 
 class BookListStore extends ReduceStore {
     getInitialState() {
-        return BookList.empty().add(Book.create('ほげ'));
+        const bookList = BookList.empty();
+        axios.get('/api/books').then(response => (
+            response.data.map(book => (
+                bookList.add(Book.create(book.title))
+            ))
+        ));
+        console.log(bookList);
+        return bookList;
     }
     reduce(state, { type, payload }) {
         switch (type) {
