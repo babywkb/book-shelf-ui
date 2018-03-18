@@ -24,3 +24,9 @@ export const BookListComponent = (props) => (
         {props.children}
     </ul>
 );
+
+export const GetTitleButton = (props) => (
+    <p>
+        <button onClick={props.getTitle}>本のタイトル一覧取得</button>
+    </p>
+);

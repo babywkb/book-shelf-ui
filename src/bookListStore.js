@@ -1,19 +1,12 @@
 import { ReduceStore } from 'flux/utils';
 import ActionTypes from './action-types';
-import TodoDispatcher from './dispatcher';
-import axios from 'axios';
+import BookShelfDispatcher from './dispatcher';
 import { Book, BookList } from './models';
 
 
 class BookListStore extends ReduceStore {
     getInitialState() {
         const bookList = BookList.empty();
-        axios.get('/api/books').then(response => (
-            response.data.map(book => (
-                bookList.add(Book.create(book.title))
-            ))
-        ));
-        console.log(bookList);
         return bookList;
     }
     reduce(state, { type, payload }) {
@@ -25,10 +18,14 @@ class BookListStore extends ReduceStore {
             case ActionTypes.ADD_BOOK: {
                 return '';
             }
+            case ActionTypes.GET_TITLE: {
+                const { bookList } = payload;
+                return bookList;
+            }
             default:
                 return state;
         }
     }
 }
 
-export const bookListStore = new BookListStore(TodoDispatcher);
+export const bookListStore = new BookListStore(BookShelfDispatcher);

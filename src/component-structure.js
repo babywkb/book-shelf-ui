@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { BookListComponent, BookComponent } from './components';
+import { getTitle } from './actions';
+import { BookListComponent, BookComponent, GetTitleButton } from './components';
 
 const App = (props) => (
     <div>
@@ -12,6 +13,7 @@ const App = (props) => (
                     book={book} />
             ))}
         </BookListComponent>
+        <GetTitleButton getTitle={getTitle} />
     </div>
 );
 
